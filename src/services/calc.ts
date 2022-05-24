@@ -3,16 +3,19 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 type args = [number, number]
 
 interface CalcData {
-  totalPrincipal: string
+  total: string
   term: string
-  totalCostOfCredit: number
+  totalCost: number
   totalRepayableAmount: number
   monthlyPayment: number
 }
 
 export const api = createApi({
   baseQuery: fetchBaseQuery({
-    baseUrl: `https://js-developer-second-round.herokuapp.com/api/v1/application/real-first-loan-offer`,
+    baseUrl:
+      process.env.NODE_ENV === 'development'
+        ? 'http://localhost:3002/calc'
+        : 'https://loan-calc-example.herokuapp.com/calc',
   }),
   // global configuration for the api
   keepUnusedDataFor: 30,

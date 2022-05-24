@@ -121,11 +121,11 @@ export const Calc = () => {
                 </tr>
                 <tr>
                   <td>Cost of Credit:</td>
-                  <td>{data?.totalCostOfCredit}</td>
+                  <td>{data?.totalCost}</td>
                 </tr>
                 <tr>
                   <td>Principal:</td>
-                  <td>{data?.totalPrincipal}</td>
+                  <td>{data?.total}</td>
                 </tr>
                 <tr>
                   <td>Total Repayable Amount:</td>
