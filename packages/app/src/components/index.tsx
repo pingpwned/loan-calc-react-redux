@@ -17,13 +17,13 @@ export const Main = styled.main`
 export const Wrapper = styled.div`
   background-color: #7575ff; // pantone 2022 color of the year
   min-height: 50vh;
-  margin-top: 30px;
   border-radius: 30px;
   padding: 40px;
   color: white;
   font-size: 18px;
-  max-width: 375px;
-  width: 100%;
+  max-width: 625px;
+  width: calc(100% - 140px);
+  margin: 30px;
   display: flex;
   flex-direction: column;
   align-content: center;
