@@ -21,23 +21,19 @@ import { useApi } from '../../services/useApi'
 export const Calc = () => {
   const [sliderAmount, setSliderAmount] = useState(400)
   const [sliderTerm, setSliderTerm] = useState(15)
-
   const { amount, term } = useSelector(
     (state: typeof store) => store.getState().calcStore,
   )
   const dispatch = useDispatch()
-
+  const { intervals, loading } = useApi()
   const { data } = useCalcDataQuery([amount, term])
 
   const handleAmountInput = () => {
     dispatch(setAmount(sliderAmount))
   }
-
   const handleTermInput = () => {
     dispatch(setTerm(sliderTerm))
   }
-
-  const { intervals, loading } = useApi()
 
   return (
     <Main>
