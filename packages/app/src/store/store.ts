@@ -1,5 +1,5 @@
 import { setupListeners } from '@reduxjs/toolkit/query'
-import { api } from '../services/calc'
+import { api } from '../services/useCalc'
 import { configureStore, createAction, createReducer } from '@reduxjs/toolkit'
 import { combineReducers } from 'redux'
 

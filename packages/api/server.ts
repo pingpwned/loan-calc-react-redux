@@ -30,6 +30,14 @@ app.get('/calc', (req, res) => {
   res.json(obj)
 })
 
+app.get('/intervals', (_, res) => {
+  const obj = {
+    amountInterval: { min: 10, max: 2000, step: 10, defaultValue: 400 },
+    termInterval: { min: 3, max: 30, step: 1, defaultValue: 15 },
+  }
+  res.json(obj)
+})
+
 app.get('/', (req, res) => {
   res.send(
     `Hello for ${req.headers['x-forwarded-for'] || req.socket.remoteAddress}`,
