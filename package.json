@@ -5,11 +5,12 @@
     "packages/*"
   ],
   "devDependencies": {
+    "concurrently": "^7.2.1",
     "lerna": "^4.0.0"
   },
   "scripts": {
     "start": "yarn workspace api start",
-    "dev": "yarn workspace api start & yarn workspace app start",
+    "dev": "concurrently \"yarn workspace api start\" \"yarn workspace app start\"",
     "build:web": "yarn workspace app build"
   }
 }

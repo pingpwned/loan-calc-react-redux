@@ -69,7 +69,7 @@ export const Calc = () => {
                       parseInt((e.target as HTMLInputElement).value, 10),
                     )
                   }
-                  handleMouse={handleAmountInput}
+                  handleChangeCommitted={handleAmountInput}
                 />
               </InputGroup>
 
@@ -101,7 +101,7 @@ export const Calc = () => {
                       parseInt((e.target as HTMLInputElement).value, 10),
                     )
                   }
-                  handleMouse={handleTermInput}
+                  handleChangeCommitted={handleTermInput}
                 />
               </InputGroup>
 

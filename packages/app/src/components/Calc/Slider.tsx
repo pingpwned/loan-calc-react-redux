@@ -4,7 +4,7 @@ import { StyledSlider } from '../'
 type SliderProps = {
   name: string
   value: number
-  handleMouse: (e: Event | React.DragEvent | ChangeEvent) => void
+  handleChangeCommitted: (e: Event | React.DragEvent | ChangeEvent) => void
   handleChange: (e: Event) => void
   step: number
   min: number
@@ -19,8 +19,8 @@ export const Slider = (props: SliderProps) => (
     marks
     min={props.min}
     max={props.max}
-    onMouseUp={(e: any) => props.handleMouse(e)}
     onChange={(e: any) => props.handleChange(e)}
+    onChangeCommitted={(e: any) => props.handleChangeCommitted(e)}
     sx={{
       color: 'white',
     }}

@@ -1,4 +1,5 @@
 const express = require('express')
+const cors = require('cors')
 const app = express()
 const port = process.env.PORT || 3002
 
@@ -10,6 +11,8 @@ app.use((req, res, next) => {
   }
   next()
 })
+
+app.use(cors())
 
 app.get('/calc', (req, res) => {
   const amount = parseInt(req.query.amount, 10)
