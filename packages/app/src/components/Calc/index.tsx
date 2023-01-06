@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
-import Button from '@mui/material/Button'
-import { useSelector, useDispatch } from 'react-redux'
-import { setAmount, setTerm, store } from '../../store/store'
-import { useCalcDataQuery } from '../../services/useCalc'
+import React, { useState } from "react";
+import Button from "@mui/material/Button";
+import { useSelector, useDispatch } from "react-redux";
+import { setAmount, setTerm, store } from "../../store/store";
+import { useCalcDataQuery } from "../../services/useCalc";
 
 import {
   Main,
@@ -13,27 +13,27 @@ import {
   StyledTextField,
   StyledInputAdornment,
   Table,
-} from '../'
+} from "../";
 
-import { MySlider as Slider } from '../'
-import { useApi } from '../../services/useApi'
+import { MySlider as Slider } from "../";
+import { useApi } from "../../services/useApi";
 
 export const Calc = () => {
-  const [sliderAmount, setSliderAmount] = useState(400)
-  const [sliderTerm, setSliderTerm] = useState(15)
+  const [sliderAmount, setSliderAmount] = useState(400);
+  const [sliderTerm, setSliderTerm] = useState(15);
   const { amount, term } = useSelector(
-    (state: typeof store) => store.getState().calcStore,
-  )
-  const dispatch = useDispatch()
-  const { intervals, loading } = useApi()
-  const { data } = useCalcDataQuery([amount, term])
+    (state: typeof store) => store.getState().calcStore
+  );
+  const dispatch = useDispatch();
+  const { intervals, loading } = useApi();
+  const { data } = useCalcDataQuery([amount, term]);
 
   const handleAmountInput = () => {
-    dispatch(setAmount(sliderAmount))
-  }
+    dispatch(setAmount(sliderAmount));
+  };
   const handleTermInput = () => {
-    dispatch(setTerm(sliderTerm))
-  }
+    dispatch(setTerm(sliderTerm));
+  };
 
   return (
     <Main>
@@ -46,7 +46,7 @@ export const Calc = () => {
                   <Title>Total amount</Title>
                   <StyledTextField
                     name="amountInput"
-                    inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
+                    inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}
                     InputProps={{
                       startAdornment: (
                         <StyledInputAdornment position="end">
@@ -66,7 +66,7 @@ export const Calc = () => {
                   max={intervals?.amountInterval?.max || 10}
                   handleChange={(e: Event) =>
                     setSliderAmount(
-                      parseInt((e.target as HTMLInputElement).value, 10),
+                      parseInt((e.target as HTMLInputElement).value, 10)
                     )
                   }
                   handleChangeCommitted={handleAmountInput}
@@ -78,7 +78,7 @@ export const Calc = () => {
                   <Title>Term</Title>
                   <StyledTextField
                     name="termInput"
-                    inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
+                    inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}
                     InputProps={{
                       startAdornment: (
                         <StyledInputAdornment position="end">
@@ -98,7 +98,7 @@ export const Calc = () => {
                   max={intervals?.termInterval?.max || 10}
                   handleChange={(e: Event) =>
                     setSliderTerm(
-                      parseInt((e.target as HTMLInputElement).value, 10),
+                      parseInt((e.target as HTMLInputElement).value, 10)
                     )
                   }
                   handleChangeCommitted={handleTermInput}
@@ -110,11 +110,7 @@ export const Calc = () => {
                   <tbody>
                     <tr>
                       <td>Monthly payment:</td>
-                      <td>
-                        {
-                          /*Math.round(data?.monthlyPayment as number)*/ data?.monthlyPayment
-                        }
-                      </td>
+                      <td>{Math.ceil(data?.monthlyPayment as number)}</td>
                     </tr>
                     <tr>
                       <td>Term</td>
@@ -122,7 +118,7 @@ export const Calc = () => {
                     </tr>
                     <tr>
                       <td>Cost of Credit:</td>
-                      <td>{data?.totalCost}</td>
+                      <td>{Math.ceil(data?.totalCost as number)}</td>
                     </tr>
                     <tr>
                       <td>Principal:</td>
@@ -130,7 +126,7 @@ export const Calc = () => {
                     </tr>
                     <tr>
                       <td>Total Repayable Amount:</td>
-                      <td>{data?.totalRepayableAmount}</td>
+                      <td>{Math.ceil(data?.totalRepayableAmount as number)}</td>
                     </tr>
                   </tbody>
                 </Table>
@@ -145,5 +141,5 @@ export const Calc = () => {
         )}
       </Wrapper>
     </Main>
-  )
-}
+  );
+};

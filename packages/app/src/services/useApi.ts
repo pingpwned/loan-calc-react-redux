@@ -1,38 +1,39 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from "react";
+import { url } from "./getApiUrl";
 
 export type TApiResponse = {
   amountInterval: {
-    min: number
-    max: number
-    step: number
-    defaultValue: number
-  }
-  termInterval: { min: number; max: number; step: number; defaultValue: number }
-}
+    min: number;
+    max: number;
+    step: number;
+    defaultValue: number;
+  };
+  termInterval: {
+    min: number;
+    max: number;
+    step: number;
+    defaultValue: number;
+  };
+};
 
 export const useApi = () => {
-  const [intervals, setIntervals] = useState<TApiResponse>()
-  const [loading, setLoading] = useState<boolean>(false)
-
-  const url =
-    process.env.NODE_ENV === 'development'
-      ? 'http://localhost:3002/intervals'
-      : 'https://loan-calc-example.herokuapp.com/intervals'
+  const [intervals, setIntervals] = useState<TApiResponse>();
+  const [loading, setLoading] = useState<boolean>(false);
 
   const getApiData = async () => {
-    setLoading(true)
+    setLoading(true);
     try {
-      const apiRes = await fetch(url)
-      const json = await apiRes.json()
-      setIntervals(json)
+      const apiRes = await fetch(`${url}/intervals`);
+      const json = await apiRes.json();
+      setIntervals(json);
     } catch (err) {
-      console.error(err)
+      console.error(err);
     }
-    setLoading(false)
-  }
+    setLoading(false);
+  };
   useEffect(() => {
-    getApiData()
-  }, [])
+    getApiData();
+  }, []);
 
-  return { intervals, loading }
-}
+  return { intervals, loading };
+};
